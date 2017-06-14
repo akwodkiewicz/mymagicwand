@@ -162,54 +162,36 @@ namespace MyMagicWand
 
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            _settings.ShapeSize = 40;
-            foreach (var strip in sizeToolStripMenuItem.DropDownItems)
-                (strip as ToolStripMenuItem).Checked = false;
-
-            toolStripMenuItem2.Checked = true;
-            Restart();
+            SetSize(40, 0);
         }
         private void toolStripMenuItem3_Click(object sender, EventArgs e)
         {
-            _settings.ShapeSize = 60;
-            foreach (var strip in sizeToolStripMenuItem.DropDownItems)
-                (strip as ToolStripMenuItem).Checked = false;
-
-            toolStripMenuItem3.Checked = true;
-            Restart();
-
+            SetSize(60, 1);
         }
 
         private void toolStripMenuItem4_Click(object sender, EventArgs e)
         {
-            _settings.ShapeSize = 80;
-            foreach (var strip in sizeToolStripMenuItem.DropDownItems)
-                (strip as ToolStripMenuItem).Checked = false;
-
-            toolStripMenuItem4.Checked = true;
-            Restart();
+            SetSize(80, 2);
         }
 
         private void toolStripMenuItem5_Click(object sender, EventArgs e)
         {
-            _settings.ShapeSize = 100;
-            foreach (var strip in sizeToolStripMenuItem.DropDownItems)
-                (strip as ToolStripMenuItem).Checked = false;
-
-            toolStripMenuItem5.Checked = true;
-            Restart();
+            SetSize(100, 3);
         }
 
         private void toolStripMenuItem6_Click(object sender, EventArgs e)
         {
-            _settings.ShapeSize = 120;
+            SetSize(120, 4);
+        }
+        private void SetSize(int size, int index)
+        {
+            _settings.ShapeSize = size;
             foreach (var strip in sizeToolStripMenuItem.DropDownItems)
                 (strip as ToolStripMenuItem).Checked = false;
 
-            toolStripMenuItem6.Checked = true;
+            (sizeToolStripMenuItem.DropDownItems[index] as ToolStripMenuItem).Checked = true;
             Restart();
         }
-
         private void aboutToolStripItem_Click(object sender, EventArgs e)
         {
             var about = new AboutForm();

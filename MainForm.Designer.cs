@@ -37,18 +37,18 @@
             this.restartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.trianglesOnlyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.colorModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
+            this.colorModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.trianglesOnlyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fullOpacityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.CloseMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fullOpacityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -108,20 +108,6 @@
             this.settingsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.settingsToolStripMenuItem.Text = "Settings";
             // 
-            // trianglesOnlyToolStripMenuItem
-            // 
-            this.trianglesOnlyToolStripMenuItem.Name = "trianglesOnlyToolStripMenuItem";
-            this.trianglesOnlyToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
-            this.trianglesOnlyToolStripMenuItem.Text = "Triangles Only";
-            this.trianglesOnlyToolStripMenuItem.Click += new System.EventHandler(this.trianglesOnlyToolStripMenuItem_Click);
-            // 
-            // colorModeToolStripMenuItem
-            // 
-            this.colorModeToolStripMenuItem.Name = "colorModeToolStripMenuItem";
-            this.colorModeToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
-            this.colorModeToolStripMenuItem.Text = "One Color Mode";
-            this.colorModeToolStripMenuItem.Click += new System.EventHandler(this.oneColorToolStripMenuItem_Click);
-            // 
             // sizeToolStripMenuItem
             // 
             this.sizeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -136,6 +122,8 @@
             // 
             // toolStripMenuItem2
             // 
+            this.toolStripMenuItem2.Checked = true;
+            this.toolStripMenuItem2.CheckState = System.Windows.Forms.CheckState.Checked;
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
             this.toolStripMenuItem2.Text = "40";
@@ -169,6 +157,27 @@
             this.toolStripMenuItem6.Text = "120";
             this.toolStripMenuItem6.Click += new System.EventHandler(this.toolStripMenuItem6_Click);
             // 
+            // colorModeToolStripMenuItem
+            // 
+            this.colorModeToolStripMenuItem.Name = "colorModeToolStripMenuItem";
+            this.colorModeToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.colorModeToolStripMenuItem.Text = "One Color Mode";
+            this.colorModeToolStripMenuItem.Click += new System.EventHandler(this.oneColorToolStripMenuItem_Click);
+            // 
+            // trianglesOnlyToolStripMenuItem
+            // 
+            this.trianglesOnlyToolStripMenuItem.Name = "trianglesOnlyToolStripMenuItem";
+            this.trianglesOnlyToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.trianglesOnlyToolStripMenuItem.Text = "Triangles Only";
+            this.trianglesOnlyToolStripMenuItem.Click += new System.EventHandler(this.trianglesOnlyToolStripMenuItem_Click);
+            // 
+            // fullOpacityToolStripMenuItem
+            // 
+            this.fullOpacityToolStripMenuItem.Name = "fullOpacityToolStripMenuItem";
+            this.fullOpacityToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.fullOpacityToolStripMenuItem.Text = "Full Opacity";
+            this.fullOpacityToolStripMenuItem.Click += new System.EventHandler(this.fullOpacityToolStripMenuItem_Click);
+            // 
             // aboutToolStripItem
             // 
             this.aboutToolStripItem.Name = "aboutToolStripItem";
@@ -187,13 +196,6 @@
             this.CloseMenuItem.Size = new System.Drawing.Size(152, 22);
             this.CloseMenuItem.Text = "Close";
             this.CloseMenuItem.Click += new System.EventHandler(this.CloseMenuItem_Click);
-            // 
-            // fullOpacityToolStripMenuItem
-            // 
-            this.fullOpacityToolStripMenuItem.Name = "fullOpacityToolStripMenuItem";
-            this.fullOpacityToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
-            this.fullOpacityToolStripMenuItem.Text = "Full Opacity";
-            this.fullOpacityToolStripMenuItem.Click += new System.EventHandler(this.fullOpacityToolStripMenuItem_Click);
             // 
             // MainForm
             // 
