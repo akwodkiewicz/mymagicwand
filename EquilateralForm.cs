@@ -17,10 +17,10 @@ namespace MyMagicWand
         private double _angle;
         private GraphicsPath _gpath;
         private float _rotationAngle;
-        public EquilateralForm(int size = 0, int sides = 0) : base(size)
+        public EquilateralForm(Settings settings) : base(settings)
         {
             _rotationAngle = Program.Rnd(100, 500) / (float)100;
-            _vertices = (sides == 0) ? Program.Rnd(3, 8) : sides;
+            _vertices = settings.OneShapeMode ? settings.ShapeSides:Program.Rnd(3, 8);
             _angle = 2 * Math.PI / _vertices;
             var pointsList = PreparePoints();
             _gpath = new GraphicsPath();

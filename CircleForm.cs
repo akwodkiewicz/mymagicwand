@@ -13,7 +13,7 @@ namespace MyMagicWand
 {
     public partial class CircleForm : ShapeForm
     {
-        public CircleForm(int size=0) : base(size)
+        public CircleForm(Settings settings) : base(settings)
         {
             var graphicspath = new GraphicsPath();
             graphicspath.AddEllipse(new Rectangle(0, 0, Width, Height));

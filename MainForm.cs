@@ -20,17 +20,16 @@ namespace MyMagicWand
         //private int _closeCounter;
         private int _spawnLeaps;
         private List<ShapeForm> _shapeList = new List<ShapeForm>();
-        private bool _triangleMode = false;
-        private bool _fullOpacity = false;
-        private int _size;
+        private Settings _settings;
         public MainForm()
         {
             InitializeComponent();
             Visible = false;
+            _settings = new Settings();
             _spawnLeaps = (_spawnTime / _numOfShapes) / _timerInterval;
             _spawnCounter = _spawnLeaps * _numOfShapes;
             //_closeCounter = _programClosingTime / _timerInterval;
-            _size = 0;
+            //_size = 0;
             timer1.Interval = _timerInterval;
             timer1.Start();
         }
@@ -41,14 +40,14 @@ namespace MyMagicWand
             if (_spawnCounter % _spawnLeaps == 0 && _spawnCounter >= 0)
             {
                 ShapeForm shape;
-                if (_triangleMode)
-                    shape = new EquilateralForm(_size, 3);
+                if (_settings.OneShapeMode)
+                    shape = new EquilateralForm(_settings);
                 else
                 {
                     if (Program.Rnd(0, 61) < 10)
-                        shape = new CircleForm(_size);
+                        shape = new CircleForm(_settings);
                     else
-                        shape = new EquilateralForm(_size);
+                        shape = new EquilateralForm(_settings);
                 }
                 _shapeList.Add(shape);
                 shape.Show();
@@ -75,7 +74,7 @@ namespace MyMagicWand
                 if (shape.IsDisposed || shape.Disposing)
                     continue;
                 shape.MoveForm();
-                if (!_fullOpacity)
+                if (!_settings.FullOpacityMode)
                     shape.ChangeOpacity();
                 shape.Rotate();
             }
@@ -91,14 +90,17 @@ namespace MyMagicWand
             if (!colorModeToolStripMenuItem.Checked)
             {
                 colorModeToolStripMenuItem.Checked = true;
+                _settings.OneColorMode = true;
                 var colorpicker = new ColorDialog();
                 if (colorpicker.ShowDialog() == DialogResult.OK)
                     foreach (var sh in _shapeList)
                         sh.BackColor = colorpicker.Color;
+                _settings.OneColor = colorpicker.Color;
             }
             else
             {
                 colorModeToolStripMenuItem.Checked = false;
+                _settings.OneColorMode = false;
                 foreach (var sh in _shapeList)
                     sh.BackColor = Color.FromArgb(
                                 Program.Rnd(0, 256),
@@ -148,9 +150,12 @@ namespace MyMagicWand
 
         private void trianglesOnlyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _triangleMode = !_triangleMode;
-            if (_triangleMode)
+            _settings.OneShapeMode = !_settings.OneShapeMode;
+            if (_settings.OneShapeMode)
+            {
                 trianglesOnlyToolStripMenuItem.Checked = true;
+                _settings.ShapeSides = 3;
+            }
             else
                 trianglesOnlyToolStripMenuItem.Checked = false;
             Restart();
@@ -158,17 +163,16 @@ namespace MyMagicWand
 
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            _size = 40;
+            _settings.ShapeSize = 40;
             foreach (var strip in sizeToolStripMenuItem.DropDownItems)
                 (strip as ToolStripMenuItem).Checked = false;
 
             toolStripMenuItem2.Checked = true;
             Restart();
-
         }
         private void toolStripMenuItem3_Click(object sender, EventArgs e)
         {
-            _size = 60;
+            _settings.ShapeSize = 60;
             foreach (var strip in sizeToolStripMenuItem.DropDownItems)
                 (strip as ToolStripMenuItem).Checked = false;
 
@@ -179,7 +183,7 @@ namespace MyMagicWand
 
         private void toolStripMenuItem4_Click(object sender, EventArgs e)
         {
-            _size = 80;
+            _settings.ShapeSize = 80;
             foreach (var strip in sizeToolStripMenuItem.DropDownItems)
                 (strip as ToolStripMenuItem).Checked = false;
 
@@ -189,24 +193,22 @@ namespace MyMagicWand
 
         private void toolStripMenuItem5_Click(object sender, EventArgs e)
         {
-            _size = 100;
+            _settings.ShapeSize = 100;
             foreach (var strip in sizeToolStripMenuItem.DropDownItems)
                 (strip as ToolStripMenuItem).Checked = false;
 
             toolStripMenuItem5.Checked = true;
             Restart();
-
         }
 
         private void toolStripMenuItem6_Click(object sender, EventArgs e)
         {
-            _size = 120;
+            _settings.ShapeSize = 120;
             foreach (var strip in sizeToolStripMenuItem.DropDownItems)
                 (strip as ToolStripMenuItem).Checked = false;
 
             toolStripMenuItem6.Checked = true;
             Restart();
-
         }
 
         private void aboutToolStripItem_Click(object sender, EventArgs e)
@@ -217,12 +219,15 @@ namespace MyMagicWand
 
         private void fullOpacityToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _fullOpacity = !_fullOpacity;
-            if (_fullOpacity)
+            _settings.FullOpacityMode = !_settings.FullOpacityMode;
+            if (_settings.FullOpacityMode)
+            {
                 fullOpacityToolStripMenuItem.Checked = true;
+                foreach (var sh in _shapeList)
+                    sh.Opacity = 1;
+            }
             else
                 fullOpacityToolStripMenuItem.Checked = false;
-            Restart();
         }
     }
 }

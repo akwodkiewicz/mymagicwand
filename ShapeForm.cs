@@ -18,15 +18,18 @@ namespace MyMagicWand
         public double OpacityVel { get; set; }
         public Point Center { get; set; }
 
-        public ShapeForm(int size = 0)
+        public ShapeForm(Settings settings)
         {
             InitializeComponent();
-            Size = (size == 0) ? new Size(40, 40) : new Size(size, size);
+            Size = new Size(settings.ShapeSize, settings.ShapeSize);
             Height = Size.Height;
             Width = Size.Width;
-            BackColor = Color.FromArgb(Program.Rnd(0, 256),
-                               Program.Rnd(0, 256),
-                               Program.Rnd(0, 256));
+            if (settings.OneColorMode)
+                BackColor = settings.OneColor;
+            else
+                BackColor = Color.FromArgb(Program.Rnd(0, 256),
+                                   Program.Rnd(0, 256),
+                                   Program.Rnd(0, 256));
             Location = new Point(Cursor.Position.X - Width / 2,
                                  Cursor.Position.Y - Height / 2);
             XVel = Program.Rnd(-5, 6);
@@ -45,11 +48,11 @@ namespace MyMagicWand
             var p = Location;
             var screenWidth = Screen.PrimaryScreen.Bounds.Width;
             var screenHeight = Screen.PrimaryScreen.Bounds.Height;
-            if ((p.X < 0 && XVel < 0) || (p.X + Width/2 > screenWidth && XVel > 0))
+            if ((p.X < 0 && XVel < 0) || (p.X + Width / 2 > screenWidth && XVel > 0))
             {
                 XVel *= -1;
             }
-            if ((p.Y < 0 && YVel < 0) || (p.Y + Height/2 > screenHeight && YVel > 0))
+            if ((p.Y < 0 && YVel < 0) || (p.Y + Height / 2 > screenHeight && YVel > 0))
             {
                 YVel *= -1;
             }
