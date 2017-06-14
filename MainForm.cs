@@ -144,7 +144,6 @@ namespace MyMagicWand
             _spawnCounter = _spawnLeaps * _numOfShapes;
             //_closeCounter = _programClosingTime / _timerInterval;
             pauseToolStripMenuItem.Text = "Pause";
-            colorModeToolStripMenuItem.Checked = false;
             timer1.Start();
         }
 
