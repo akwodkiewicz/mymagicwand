@@ -40,8 +40,10 @@ namespace MyMagicWand
             if (_spawnCounter % _spawnLeaps == 0 && _spawnCounter >= 0)
             {
                 ShapeForm shape;
-                if (_settings.OneShapeMode)
+                if (_settings.OneShapeMode && _settings.ShapeSides != 0)
                     shape = new EquilateralForm(_settings);
+                else if (_settings.OneShapeMode)
+                    shape = new CircleForm(_settings);
                 else
                 {
                     if (Program.Rnd(0, 61) < 10)
@@ -147,19 +149,6 @@ namespace MyMagicWand
             timer1.Start();
         }
 
-        private void trianglesOnlyToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            _settings.OneShapeMode = !_settings.OneShapeMode;
-            if (_settings.OneShapeMode)
-            {
-                trianglesOnlyToolStripMenuItem.Checked = true;
-                _settings.ShapeSides = 3;
-            }
-            else
-                trianglesOnlyToolStripMenuItem.Checked = false;
-            Restart();
-        }
-
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
             SetSize(40, 0);
@@ -209,6 +198,43 @@ namespace MyMagicWand
             }
             else
                 fullOpacityToolStripMenuItem.Checked = false;
+        }
+        private void SetSides(int sides, int index)
+        {
+            _settings.ShapeSides = sides;
+            _settings.OneShapeMode = (index == 0) ? false : true;
+            foreach (var strip in oneShapeModeToolstripMenuItem.DropDownItems)
+                (strip as ToolStripMenuItem).Checked = false;
+            (oneShapeModeToolstripMenuItem.DropDownItems[index] as ToolStripMenuItem).Checked = true;
+            Restart();
+        }
+        private void allShapesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SetSides(0, 0);
+        }
+        private void circleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SetSides(0, 1);
+        }
+
+        private void triangleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SetSides(3, 2);
+        }
+
+        private void squareToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SetSides(4, 3);
+        }
+
+        private void pentagonToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SetSides(5, 4);
+        }
+
+        private void hexagonToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SetSides(6, 5);
         }
     }
 }
